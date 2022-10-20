@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.1",
@@ -36,9 +37,11 @@
     ]
   },
   "devDependencies": {
+    "@types/moxios": "^0.4.15",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "enzyme": "^3.11.0",
+    "moxios": "^0.4.0",
     "react-error-overlay": "^6.0.9"
   }
 }
