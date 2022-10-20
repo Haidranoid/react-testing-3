@@ -6,6 +6,7 @@ import App from './App';
 const setup = (props = {}) => {
     return shallow(<App {...props}/>)
 }
+
 describe("App", () => {
 
     test("renders without error", () => {
