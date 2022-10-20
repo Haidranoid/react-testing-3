@@ -1,13 +1,18 @@
-import Enzyme from 'enzyme'
-import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
+import {shallow} from "enzyme";
+import {findByTestAttribute} from "../test/test-utils";
 import App from './App';
 
-Enzyme.configure({
-    adapter: new EnzymeAdapter()
-})
 
+const setup = (props = {}) => {
+    return shallow(<App {...props}/>)
+}
 describe("App", () => {
-    test("test", () => {
-        
+
+    test("renders without error", () => {
+        const wrapper = setup();
+
+        const app = findByTestAttribute(wrapper, 'component-app')
+
+        expect(app).toHaveLength(1);
     })
 })
