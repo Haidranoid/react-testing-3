@@ -1,5 +1,5 @@
-const moxios = require('moxios')
 import {getSecretWord} from "./index";
+const moxios = require('moxios')
 
 
 describe("getSecretWord", () => {
