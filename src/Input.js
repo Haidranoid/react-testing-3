@@ -1,8 +1,10 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {guessWord} from "./actions";
 
 const Input = ({secretWord}) => {
     const [currentGuess, setCurrentGuess] = React.useState('');
+    const dispatch = useDispatch();
     const success = useSelector(state => state.success)
 
     const renderInput = success => {
@@ -20,6 +22,7 @@ const Input = ({secretWord}) => {
                     className="btn btn-primary mb-2"
                     onClick={event => {
                         event.preventDefault();
+                        dispatch(guessWord(currentGuess));
                         setCurrentGuess("")
                     }}>
                 Submit

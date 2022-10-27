@@ -1,11 +1,18 @@
 import {mount} from 'enzyme'
-import {findByTestAttribute} from "../test/test-utils";
+import {findByTestAttribute, storeFactory} from "../test/test-utils";
 import App from "./App";
+import {Provider} from "react-redux";
 
-const setup = (state = {}) => {
+// activate global mock to make sure getSecretWord doesn't make network call
+jest.mock('./actions')
 
-    // TODO: apply state
-    const wrapper = mount(<App/>)
+const setup = (initialState = {}) => {
+    const store = storeFactory(initialState);
+
+    const wrapper = mount(
+        <Provider store={store}>
+            <App/>
+        </Provider>)
 
     // add value to input box
     const inputBox = findByTestAttribute(wrapper, 'input-box');
@@ -21,7 +28,7 @@ const setup = (state = {}) => {
     return wrapper;
 }
 
-describe.skip("no words guessed", () => {
+describe("no words guessed", () => {
 
     let wrapper;
     beforeEach(() => {
@@ -34,12 +41,12 @@ describe.skip("no words guessed", () => {
 
     test("creates GuessedWords table with one row", () => {
         const guessWordRows = findByTestAttribute(wrapper, 'guessed-word');
-        console.log(guessWordRows.debug())
+        //console.log(guessWordRows.debug())
         expect(guessWordRows).toHaveLength(1);
     })
 })
 
-describe.skip("some words guessed", () => {
+describe("some words guessed", () => {
 
     let wrapper;
     beforeEach(() => {
@@ -59,7 +66,7 @@ describe.skip("some words guessed", () => {
     })
 })
 
-describe.skip("guess the secret word", () => {
+describe("guess the secret word", () => {
 
     let wrapper;
     beforeEach(() => {

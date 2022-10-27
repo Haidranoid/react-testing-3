@@ -1,4 +1,6 @@
 import {getSecretWord} from "./index";
+import {storeFactory} from "../../test/test-utils";
+
 const moxios = require('moxios')
 
 
@@ -12,6 +14,7 @@ describe("getSecretWord", () => {
     })
 
     test("secretWord is returned", () => {
+        const store = storeFactory()
         moxios.wait(() => {
             const request = moxios.requests.mostRecent();
 
@@ -22,8 +25,11 @@ describe("getSecretWord", () => {
         })
 
         // TODO: update to test app in redux/contest sections
-        return getSecretWord().then(secretWord => {
-            expect(secretWord).toBe('party')
-        })
+        return store.dispatch(getSecretWord())
+            .then(() => {
+
+                const secretWord = store.getState().secretWord;
+                expect(secretWord).toBe('party')
+            })
     })
 })
